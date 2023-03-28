@@ -31,33 +31,34 @@ Salida
 
 ***Paso 2*** Pseudocódigo
 
-``` nif``` con tipado num = entrada teclado
+```
+Algoritmo DNI
+    nif <- Leer("Entre el nif:") #51536968
+    longitudNif  en base a nif   #8
+    resultadoResto 
+    controlBucle=false            #???? con el 8 por false?
+    
+    until longitudNif = true
 
-```longitudNif``` en base a nif
+        if longitudNif = 8 ; set longitudNif = true
 
-```resultadoResto``` 
+        if not print(Introduzca un DNI correcto)
 
-​	```longitudNif=false```
+        end if
 
-​	```until longitudNif = true```
+    end until
 
-​		```if longitudNif = 8 ; set longitudNif = true``` 
+    resultadoResto = nif%23
+    if resultadoResto = 0 , print(T)
+    if resultadoResto = 22 ; print(E)
 
-​		```if not print(Introduzca un DNI correcto)```
+Find Algoritmo
+```
+###	2. Ejercicio 2
 
-​		```end if```
+*Calcular el salario de un empleado*
 
-​	```end until```
 
-```resultadoResto = nif%23```
-
-```if resultadoResto = 0 , print(T)``` 
-
-...
-
-```if resultadoResto = 22 ; print(E)```
-
-###	2. Calcular el salario de un empleado
 
 ***Paso 1:*** Definir el problema
 
@@ -345,64 +346,38 @@ Salida
 
 ```
 Algoritmo números enteros
+    lista
+    lista ordenada
+    n <- longitud lista
+    
+    ### // 
+    print ("Introduzca una serie de números enteros separados por comas")
+    listaval <- false
+    
+    Mientra que listaval diferente de true
+        lista <-  Leer (Teclado) // (8,7,9,3)
+	   	si lista sólo contiene números enteros, entonces
+    		listaval <- true
+    	sino, entonces
+    		print("Introduzca solamente números enteros")
+    	finsi
+    FinMientras
 
-lista
-
-lista ordenada
-
-n <- longitud lista
-
-### // 
-
-print ("Introduzca una serie de números enteros separados por comas")
-
-listaval <- false
-
-hasta que listaval = true, repetir
-
-lista <-  Leer (Teclado) // (8,7,9,3)
-
-listaval <- false
-
-hasta que listaval = true, repetir
-
-​	si lista sólo contiene números enteros, entonces
-
-​		listaval <- true
-
-​	sino, entonces
-
-​		print("Introduzca solamente números enteros")
-
-​	finsi
-
-finhasta
-
-###
-
-n <- longitud lista // 4 (0,1,2,3)
-
-i <- 0
-
-para i=0, repetir
-
-​	para j = 0, hasta j=n-i-1, repetir
-
-​		si lista(j) mayor que lista(j+1), entonces // (8,7,9,3)
-
-​			lista(j), lista(j+1) <- lista(j+1), lista(j)  // (7,8,9,3) --> (7,8,9,3) --> (7,8,3,9) | (7,8,3,9) --> (7,3,8,9) | (3,7,8,9)
-
-​		finsi
-
-​		j <- j+1
-	hasta j=n-i-1
-
-	i <- i+1
-hasta i=n
-
-###
-
-print("Su lista ya ordenada es" +lista)	
+    ###
+    n <- longitud lista // 4 (0,1,2,3)
+    i <- 0
+    para i=0 Hasta n con Paso 1 Hacer
+    	para j = 0, hasta j=n-i-1 Con Paso 1 Hacer
+			si lista(j) mayor que lista(j+1), entonces // (8,7,9,3)
+     			temporal <- lista(j)
+				lista(j)  <- lista(j+1)
+                lista(j+1) <- temporal
+                // (7,8,9,3) --> (7,8,9,3) --> (7,8,3,9) | (7,8,3,9) --> (7,3,8,9) | (3,7,8,9)
+    		finsi
+        Fin Para 
+    Fin Para
+    ###
+    print("Su lista ya ordenada es" +lista)	
 
 Fin Algoritmo
 ```
