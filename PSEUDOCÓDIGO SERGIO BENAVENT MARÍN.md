@@ -6,13 +6,13 @@
 
 ***Paso 1*** Definir el problema
 
-Para calcular la letra del DNI se necesita dividir los 8 dígitos entre el 23 y el resto se compara con el código TRWAGMYFPDXBNJZSQVHLCKE.
+Para calcular la letra del DNI se necesita dividir los 8 dígitos entre el 23 y el resto se compara con el código TRWAGMYFPDXBNJZSQVHLCKE
 
 En primer lugar necesitamos introducir el valor ```nif``` de longitud 8 y dividirlo entre 23 para obtener el resto. 
 
 En segundo lugar obtener el resto y establecer una variable ```resultadoResto```			
 
-En segundo lugar establecer un if de varios resultados, donde ```if resultadoResto = n, print(x)``` donde n es una letra del 0 al 22 y x es la letra en la posición del código cuyos valores se establecen en una tabla.
+Luego se le da al usuario el
 
 ***Paso2***: Planteamiento del problema
 
@@ -23,39 +23,41 @@ Entrada
 
 Proceso
 
-* Si tiene la longitud correcta, comprobar en un tabla el valor de la letra según el resto del NIF mod 22.
+* Si tiene la longitud correcta, comprobar en un tabla el valor de la letra según el resto del NIF mod 23.
 
 Salida
 
-* Devolver la letra.
+* Devolver la letra con el array.
 
-***Paso 2*** Pseudocódigo
+***Paso 3*** Pseudocódigo
 
-``` nif``` con tipado num = entrada teclado
+```
+Algoritmo DNI
 
-```longitudNif``` en base a nif
+    letrasDni <- (T,R,W,A,G,M,Y,F,P,D,X,B,N,J,Z,S,Q,V,H,L,C,K,E)
+    ###
+    val <- false
+    print("Introduzca los 8 dígitos numéricos de su DNI")
+    Mientras val diferente de "true", repetir
+    	nif <- Leer (Teclado)
+    	si longitud(nif) = 8, entonces
+    		val <- true
+    	si nif tiene algún carácter que no sea número entero, entonces
+    		val <- false
+    	si val = false, entonces
+    		print("Asegúrese de que está introduciendo 8 números enteros")
+    	finsi
+    finMientras
+    ###
+    restoNif <- nif mod 23
+    letraNif <- letrasDni(restoNif)
+    ###
+    print("Su DNI completo es" +nif "con letra" +letraNif)
 
-```resultadoResto``` 
+Fin Algoritmo
+```
 
-​	```longitudNif=false```
 
-​	```until longitudNif = true```
-
-​		```if longitudNif = 8 ; set longitudNif = true``` 
-
-​		```if not print(Introduzca un DNI correcto)```
-
-​		```end if```
-
-​	```end until```
-
-```resultadoResto = nif%23```
-
-```if resultadoResto = 0 , print(T)``` 
-
-...
-
-```if resultadoResto = 22 ; print(E)```
 
 ###	2. Calcular el salario de un empleado
 
@@ -101,47 +103,34 @@ Hacer los cálculos.
 
 ***Paso 3:*** Pseudocódigo
 
-```var salario num``` 
+```
+Algoritmo
 
-```var horas trabajadas```
+    ###
+    salario <- Leer(Teclado)
+    pagas <- Leer(Teclado)
+    horasTrabajadas <- Leer (Teclado)
+    ###
+    salarioAnualBruto <- salario * pagas * horasTrabajadas
+    si salarioAnualBruto mayor que 12450, entonces
+         irpf <- 1 - 0.19  
+    si salarioAnualBruto entre 12450 y 201999, entonces
+        irpf <- 1 - 0.24
 
-```var pagas num ```
+    si ...	
 
-```var salarioAnualBruto num = salario * horasTrabajadas * pagas```
+    ...
 
-```var irpf``` num
+    finsi
+    salarioAnualNeto <- salarioAnualBruto * irpf
+    nomina <- salarioAnualNeto / pagas
+    ###
+    print("Su nómina es" +nomina)
 
-```var salarioAnualNeto``` num
-
-```var nomina``` num
-
+Fin Algoritmo
+```
 
 
-```Algoritmo```
-
-​	```salario <- entrada teclado```
-
-​	```pagas <- entrada teclado```
-
-```	horasTrabajadas <- entrada teclado```
-
-​		if salarioAnualBruto < 12450 ; set irpf = 1-0.19  //todo: optimizar todos estos ifs
-
-​		if 12450 < salarioAnualBruto < 201999; set irpf = 1-0.24
-
-​		if ...	
-
-​		...
-
-​		endif
-
-​	set salarioAnualNeto = salarioAnualBruto * irpf
-
-​	set nomina = salarioAnualNeto / pagas
-
-​	print("Su nómina es [nomina]")
-
-endAlgoritmo
 
 ### 3 Determinar la ruta para llegar a una ciudad por avión
 
@@ -176,69 +165,33 @@ Dar enlaces para comprar los vuelos.
 ```
 Algoritmo vuelos
 
-ciudadOrigen <- texto
+    ###
+    origen <- false
+    print("Introduzca su lugar de salida")
+    mientras que origen diferente "true", repetir 
+        ciudadOrigen <- Leer (Teclado)
+        si ciudadOrigen está en la base de Maps, entonces
+            origen <- true
+        sino entonces
+            print(Introduzca un lugar de salida válido)
+        finsi
+    finhasta
 
-ciudadDestino <- texto
-
-baseDatosAeropuertos
-
-baseDatosVuelos
-
-(herramientaBusquedaVuelos)
-
-(herramientaCreacionRutas)
-
-##
-
-origen <- false
-
-print("Introduzca su lugar de salida")
-
-hasta que origen <- true 
-
-​	ciudadOrigen <- Leer (Teclado)
-
-​	if ciudadOrigen está en la base de Maps, entonces
-
-​		origen <- true
-
-​	ifnot entonces
-
-​		print(Introduzca un lugar de salida válido)
-
-​	finif
-
-finhasta
-
-destino <- false
-
-print("Introduzca su ciudad de destino")
-
-ciudadDestino <- Leer (Teclado)
-
-hasta destino = true
-
-​	if ciudadDestino está en la base de Maps, entonces
-
-​		destino <- true
-
-​	ifnot entonces
-
-​		print(Introduzca un lugar de destino válido)	
-
-​	finif
-
-​	fin hasta
-
-#####
-
-ruta <-Establecer (herramientaCreacionRutas)
-
-vuelos <- Búsqueda y crear lista (herramientaBusquedaVuelos)
-
-###
-
-print("Puede obtener su billete en los siguientes enlaces" +vuelos)
+    destino <- false
+    print("Introduzca su ciudad de destino")
+    mientras destino diferente de "true"
+        ciudadDestino <- Leer (Teclado)
+        si ciudadDestino está en la base de Maps, entonces
+            destino <- true
+        sino entonces
+            print(Introduzca un lugar de destino válido)	
+        finsi
+    finmientras
+    #####
+    ruta <-Establecer (herramientaCreacionRutas)
+    vuelos <- Búsqueda y crear lista (herramientaBusquedaVuelos)
+    ###
+    print("Puede obtener su billete en los siguientes enlaces" +vuelos)
 
 Fin Algoritmo
 ```
@@ -273,43 +226,27 @@ Salida
 ```
 Algoritmo círculo
 
-radio <- 0
+    radio <- 0
+    area <- 0
+    perímetro <- 0
+    ###
+    print("Introduzca el radio de su círculo en metros")
+    radionum<- false
+    mientras que radionum diferente "true", repetir
+        radio <-Leer (Teclado)
+        si radio = numérico, entonces
+            radionum <- true
+        sino, entonces
+            print("Introduzca un valor numérico válido")
 
-area <- 0
+        finsi	
+    finmientras
+    ###
+    area <- radio * 3.14^2
+    perimetro <- 2 * 3.14 * radio
+    ###
 
-perímetro <- 0
-
-###
-
-print("Introduzca el radio de su círculo en metros")
-
-radionum<- false
-
-hasta que radionum = true, entonces
-
-radio <-Leer (Teclado)
-
-​	if radio = numérico, entonces
-
-​		radionum <- true
-
-​	ifnot, entonces
-
-​		print("Introduzca un valor numérico válido")
-
-​	finif	
-
-finhasta
-
-###
-
-area <- radio * 3.14^2
-
-perimetro <- 2 * 3.14 * radio
-
-###
-
-Print("Para un círculo de radio" +radio "Su área sería" +area "m^2 y su perímetro sería de" +perimetro "m")
+    Print("Para un círculo de radio" +radio "Su área sería" +area "m^2 y su perímetro sería de" +perimetro "m")
 
 Fin Algoritmo
 ```
@@ -345,64 +282,30 @@ Salida
 
 ```
 Algoritmo números enteros
-
-lista
-
-lista ordenada
-
-n <- longitud lista
-
-### // 
-
-print ("Introduzca una serie de números enteros separados por comas")
-
-listaval <- false
-
-hasta que listaval = true, repetir
-
-lista <-  Leer (Teclado) // (8,7,9,3)
-
-listaval <- false
-
-hasta que listaval = true, repetir
-
-​	si lista sólo contiene números enteros, entonces
-
-​		listaval <- true
-
-​	sino, entonces
-
-​		print("Introduzca solamente números enteros")
-
-​	finsi
-
-finhasta
-
-###
-
-n <- longitud lista // 4 (0,1,2,3)
-
-i <- 0
-
-para i=0, repetir
-
-​	para j = 0, hasta j=n-i-1, repetir
-
-​		si lista(j) mayor que lista(j+1), entonces // (8,7,9,3)
-
-​			lista(j), lista(j+1) <- lista(j+1), lista(j)  // (7,8,9,3) --> (7,8,9,3) --> (7,8,3,9) | (7,8,3,9) --> (7,3,8,9) | (3,7,8,9)
-
-​		finsi
-
-​		j <- j+1
-	hasta j=n-i-1
-
-	i <- i+1
-hasta i=n
-
-###
-
-print("Su lista ya ordenada es" +lista)	
+    ### 
+    print ("Introduzca una serie de números enteros separados por comas")
+    listaval <- false
+    mientras que listaval diferente true, repetir
+        lista <-  Leer (Teclado) // (8,7,9,3)
+        si lista sólo contiene números enteros, entonces
+            listaval <- true
+        sino, entonces
+            print("Introduzca solamente números enteros")
+        finsi
+    finmientras
+    ###
+    n <- longitud lista # 4 (0,1,2,3)
+    i <- 0
+    para i=0 hasta i = n, repetir con Paso 1
+        para j = 0, hasta j=n-i-1, repetir
+            si lista(j) mayor que lista(j+1), entonces # (8,7,9,3)
+                lista(j), lista(j+1) <- lista(j+1), lista(j) #(7,8,9,3) --> (7,8,9,3) --> (7,8,3,9) | (7,8,3,9) --> (7,3,8,9) | 																#(3,7,8,9)
+                #@Billyclasstime Sé que me dijiste que lo cambiara y que debe tener mejor visibilidad pero si lo dejo así no hay que hacer 				#ningún cambio porque así solamente cambia la posición y no se necesita ningún temporal ♥♥♥
+            finsi
+        finpara
+    finpara
+    ###
+    print("Su lista ya ordenada es" +lista)	
 
 Fin Algoritmo
 ```
@@ -425,33 +328,20 @@ Simplemente, entrada estándar donde solo se puedan introducir números, proceso
 Algoritmo de celsius a farenheit
 
 ###
-
-print("Introduzca la temperatura en ºC")
-
-temp <- false
-
-hasta temp = true, repetir
-
-celsius <- Leer(Teclado)
-
-​	si celsius es un numero, entonces
-
-​		temp <- true
-
-​	sino, entonces
-
-​		print("Sólo se aceptan valores numéricos.")
-
-​	finsi
-fin hasta
-
-### 
-
-farenheit <- (celsius * 9/5) + 32 
-
-###
-
-print ("La temperatura es de" +farenheit "ºF")
+    print("Introduzca la temperatura en ºC")
+    temp <- false
+    mientras temp diferente "true", repetir
+    	celsius <- Leer(Teclado)
+    	si celsius es un numero, entonces
+    		temp <- true
+    	sino, entonces
+    		print("Sólo se aceptan valores numéricos.")
+    	finsi
+    fin mientras
+    ### 
+    farenheit <- (celsius * 9/5) + 32 
+    ###
+    print ("La temperatura es de" +farenheit "ºF")
 
 Fin algoritmo
 ```
@@ -484,40 +374,26 @@ Salida
 Algoritmo número par o impar
 
 ###
-
-print("Introduzca un número entero ")
-
-val <- false
-
-hasta val = true, repetir
-
-​	numero <- Leer(Teclado)
-
-​	si numero = numero entero, entonces
-
-​		val = true
-
-​	sino, entonces
-
-​		print("Solo se admiten números enteros.")
-
-​	fin si
-
-fin hasta
-
-###
-
-resultado <- impar
-
-si numero = 0 ó numero mod 2 = 0 , entonces
-
-​	resultado <- par
-
-fin si
-
-###
-
-print("Su número es" +resultado)
+    print("Introduzca un número entero ")
+    val <- false
+    mientras val diferente de "true", repetir
+    	numero <- Leer(Teclado)
+    	si numero = numero entero, entonces
+    		val = true
+    	sino, entonces
+    		print("Solo se admiten números enteros.")
+    	fin si
+    fin mientras
+    ###
+    resultado <- impar
+    si numero = 0, entonces
+    	resultado <- par
+    fin si
+    si numero mod 2 = 0, entonces
+    	resultado <- par
+    finsi
+    ###
+    print("Su número es" +resultado)
 
 Fin Algoritmo
 ```
@@ -552,45 +428,26 @@ Decir si es bisiesto o no.
 ```
 Algortimo bisiestos
 
-###
-
-print("Introduzca el año")
-
-val <- false
-
-hasta val = true, repetir
-
-​	anyo <- Leer(Teclado)
-
-​	si anyo = numero entero, entonces
-
-​		val <- true
-
-​	sino, entonces
-
-​		print("Introduzca solamente números enteros.")
-
-​	fin si
-
-fin hasta
-
-###
-
-resultado <- no bisiesto
-
-si anyo mod 400 = 0, entonces
-
-​		resultado <- bisiesto
-
-si anyo mod 4 = 0 y anyo mod 100 diferente a 0
-
-​	resultado <- bisiesto
-
-fin si
-
-###
-
-print("El año introducido es" +resultado)
+	###
+    print("Introduzca el año")
+    val <- false
+    mientras val diferente "true", repetir
+    	anyo <- Leer(Teclado)
+    	si anyo = numero entero, entonces
+    		val <- true
+    	sino, entonces
+    		print("Introduzca solamente números enteros.")
+    	fin si
+    finmientras
+    ###
+    resultado <- no bisiesto
+    si anyo mod 400 = 0, entonces
+    	resultado <- bisiesto
+    si anyo mod 4 = 0 y anyo mod 100 diferente a 0
+    	resultado <- bisiesto
+    fin si
+    ###
+    print("El año introducido es" +resultado)
 
 Fin algoritmo
 ```
@@ -625,58 +482,31 @@ Salida
 ```
 Algoritmo palindromo
 
-###
-
-print("Introduzca texto aquí.")
-
-val<-false
-
-hasta val = true, repetir
-
-​	texto <- Leer(Teclado)
-
-​	si texto = texto sin caracteres especiales, entonces
-​		val <- true
-
-​	si no, entonces
-
-​		print ("No se admiten números o caracteres especiales")
-
-​	finsi
-
-fin hasta
-
-###
-
-textoDepurado <- depuraciónCadena(texto)
-
-arrayTexto <- convertirArray(textoDepurado)
-
-n=longitud(textoDepurado)
-
-resultado <- "es un palíndromo"
-
-j<-0
-
-para j=0, repetir hasta j=n
-
-​	si arrayTexto (j) es diferente de arrayTexto(n-j), entonces
-
-​		resultado<- "no es un palíndromo"
-
-​		j <- n #break
-
-​	si no, entonces
-
-​		j <- j+1
-
-​	finsi
-
-fin repetir
-
-###
-
-print("La cadena de texto que has introducido" +resultado)
+    ###
+    print("Introduzca texto aquí.")
+    val<-false
+    mientras val diferente "true", repetir
+    	texto <- Leer(Teclado)
+    	si texto = texto sin caracteres especiales, entonces
+    		val <- true
+    	si no, entonces
+   			print ("No se admiten números o caracteres especiales")
+    	finsi
+    fin mientras
+    ###
+    textoDepurado <- depuraciónCadena(texto)
+    arrayTexto <- convertirArray(textoDepurado)
+    n=longitud(textoDepurado)
+    resultado <- "es un palíndromo"
+    j<-0
+    para j=0 hasta j=n repetir con paso i
+    	si arrayTexto (j) es diferente de arrayTexto(n-j), entonces
+    		resultado<- "no es un palíndromo"
+    		j <- n #break
+    finsi
+    fin repetir
+    ###
+    print("La cadena de texto que has introducido" +resultado)
 
 Fin algoritmo
 ```
@@ -685,48 +515,28 @@ Fin algoritmo
 
 ```
 SubAlgoritmo depuracionCadena (cadena)    #quita los espacios en blanco, otros caracteres y convierte todo a minusculas    
-
-i<-0    
-
-Mientras cadena[i] sea diferente de findecadena Haga        
-
-​	caracter<-""       
-
-​	Si  el ASCII de cadena[i]  mayor que 64 y ASCII de cadena[i] menor que 91 Entonces           
-
-​		 caracter<-cadena[i] en minusculas      
-
-​	Fin Si        
-
-​	Si  el ASCII de cadena[i]  mayor que 96 y ASCII de cadena[i] menor que 123 Entonces            
-
-​		caracter<-cadena[i]        
-
-​	End Si        
-
-​	temporal <- temporal + caracter        
-
-​	Si caracter es diferente "" Entonces            
-
-​		i<-i+1        
-
-​	Fin Si    
-
-Fin Mientras    
-
-L<-i    
-
-reversa<-""    
-
-Para N = 0 Hasta L-1 Con Paso 1 Haga        
-
-​	reversa    <-reversa+ temporal[i-1]        
-
-​	i<-i-1    
-
-Fin Para    
-
-devuelva reversa 
+    
+    i<-0    
+    Mientras cadena[i] sea diferente de findecadena repetir      
+    		caracter<-"" 
+    	Si  el ASCII de cadena[i]  mayor que 64 y ASCII de cadena[i] menor que 91 Entonces           
+    		caracter<-cadena[i] en minusculas      
+    	Fin Si        
+    	Si  el ASCII de cadena[i]  mayor que 96 y ASCII de cadena[i] menor que 123 Entonces            
+    		caracter<-cadena[i]        
+    	Fin Si        
+    	temporal <- temporal + caracter        
+    	Si caracter es diferente "" Entonces            
+    		i<-i+1        
+    	Fin Si    
+    Fin Mientras    
+    L<-i    
+    reversa<-""    
+    Para N = 0 Hasta L-1 Con Paso 1 Haga        
+    	reversa    <-reversa+ temporal[i-1]        
+    	i<-i-1    
+    Fin Para    
+    devuelva reversa 
 
 Fin SubAlgoritmo
 
@@ -790,108 +600,60 @@ Salida
 ```
 Algoritmo ordenar abc.
 
-###
+    ###
+    print("Introduzca una serie de palabras separadas por comas.")
+    val <-false
+    mientras val diferente de true, repetir
+    	lista <- Leer(Teclado)
+    	si lista solo tiene texto plano, entonces
+    		val <- true
+    	si no, entonces
+    		print("Solo se admite texto")
+    fin si
+    fin mientras
+    ###
+    n <- longitud(lista)
+    i <- 0
+    j <-0
+    h <- 0
+    k <- 0
+    l <- 0
+    letrasABC = [a,b,c,d,e,f,g,h,i,j,k,l,m,n,ñ,o,p,q,r,s,t,u,v,w,x,y,z]
+    valorABC = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27]
 
-print("Introduzca una serie de palabras separadas por comas.")
+    #Subalgoritmo de valores ABC
 
-val <-false
-mientras val diferente de true, repetir
+    para i=0 hasta i=n, repetir con paso 1
+    	lista(i) <- subAlg[Lista(i)] ## abc se convierte en (a,b,c)
+    	para j = 0 hasta j = longitud(lista i)
+    		para h = 0 hasta h = 26 repetir con paso 1
+    			si lista(i(j)) = letrasABC(h), entonces
+    					lista(i(j)) <- valorABC(h)
+    					h <-27#break
+ 				fin si
+    		fin para
+    	fin para
+    fin para
+    #fin subalgoritmo
+    #en este punto ya tenemos todas las entradas con valor numérico ejemplo: abc = (1,2,3)
 
-​	lista <- Leer(Teclado)
+    #Subalgoritmo ordenar
 
-​	si lista solo tiene texto plano, entonces
+    para k = 0 hasta k = n
+    	para l = 0 hasta l = n-k-1
+    		si lista(l(1)) mayor que lista(l+1(1)), entonces
+    			lista(l), lista (l+1) <- lista(l+1), lista(l)
+    		fin si
+    	fin para
+    fin para
 
-​		val <- true
+    #Fin subalgoritmo ordenar
+    #En este momento ya tenemos toda la lista ordenada.
+    ### Soy consciente de que solo tiene en cuenta la primera letra pero mis conocimientos terminan aquí :(
 
-​	si no, entonces
+    print(+lista)
 
-​		print("Solo se admite texto")
-
-​	fin si
-
-fin mientras
-
-###
-
-n <- longitud(lista)
-
-i <- 0
-
-j <-0
-
-h <- 0
-
-k <- 0
-
-l <- 0
-
-letrasABC = [a,b,c,d,e,f,g,h,i,j,k,l,m,n,ñ,o,p,q,r,s,t,u,v,w,x,y,z]
-
-valorABC = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27]
-
-#Subalgoritmo de valores ABC
-
-para i=0 hasta i=n, repetir con paso 1
-
-​	lista(i) <- subAlg[Lista(i)] ## abc se convierte en (a,b,c)
-
-​	para j = 0 hasta j = longitud(lista i)
-
-​		para h = 0 hasta h = 26 repetir con paso 1
-
-​			si lista(i(j)) = letrasABC(h), entonces
-
-​				lista(i(j)) <- valorABC(h)
-
-​				h <-27#break
-
-​		si no, entonces
-
-​			h <- h+1
-
-​		fin si
-
-​		fin para
-
-​	j <- j+1
-
-​	fin para
-
-i <- i+1
-
-fin para
-
-#fin subalgoritmo
-
-#en este punto ya tenemos todas las entradas con valor numérico ejemplo: abc = (1,2,3)
-
-#Subalgoritmo ordenar
-
-para k = 0 hasta k = n
-
-​	para l = 0 hasta l = n-k-1
-
-​		si lista(l(1)) mayor que lista(l+1(1)), entonces
-
-​			lista(l), lista (l+1) <- lista(l+1), lista(l)
-
-​		fin si
-
-​		l <- l+1
-
-​	fin para
-
-k <- k+1
-
-fin para
-
-#Fin subalgoritmo ordenar
-
-#En este momento ya tenemos toda la lista ordenada.
-
-### Soy consciente de que solo tiene en cuenta la primera letra pero mis conocimientos terminan aquí :(
-
-print(+lista)
+Fin Algoritmo
 
 ```
 
@@ -920,57 +682,30 @@ Salida
 ```
 Algoritmo factorial
 
-###
-
-print("Introduzca un número entero")
-
-val <- false
-
-mientras que val distinta de true, repetir
-
-​	numero <- (Leer)
-
-​	si numero = numero entero, entonces
-
-​		val <- true
-
-​	sino, entonces
-
-​		print("Solo se admiten números enteros")
-
-​	fin si
-
-fin hasta
-
-###
-
-i<- 0
-
-si numero mayor o igual a 2, entonces // 4
-
-​	para i=numero-1 hasta i=2; repetir
-
-​		numero <- numero * i // 1º --> 4 * 3 = 12 (i=3); 2º --> 12 * 2 = 24 (i=2); 3º --> 24*1 = 24 (i=1, break) 
-
-​		i <- i-1
-
-​	fin repetir
-
-si numero menor o igual a -2, entonces // -4
-
-​	para i = numero+1 hasta i = -1, repetir
-
-​		numero <- numero * i // 1º --> -4 * -3 = 12 (i=-3) ; 2º --> 12 * -2 = -24 (i=-2); 3º --> -24 * -1 = 24 (i=-1, break)
-
-​		i <- i+1
-
-​	fin repetir
-
-fin si
-
-###
-
-print("El factorial de su número es" +numero)
+    ###
+    print("Introduzca un número entero")
+    val <- false
+    mientras que val distinta de true, repetir
+    	numero <- (Leer)
+    	si numero = numero entero, entonces
+    		val <- true
+    	sino, entonces
+    		print("Solo se admiten números enteros")
+    fin si
+    fin mientras
+    ###
+    i<- 0
+    si numero mayor o igual a 2, entonces // 4
+    	para i=numero-1 hasta i=2; repetir
+    		numero <- numero * i // 1º --> 4 * 3 = 12 (i=3); 2º --> 12 * 2 = 24 (i=2); 3º --> 24*1 = 24 (i=1, break) 
+    	fin repetir
+    si numero menor o igual a -2, entonces // -4
+    	para i = numero+1 hasta i = -1, repetir
+    		numero <- numero * i // 1º --> -4 * -3 = 12 (i=-3) ; 2º --> 12 * -2 = -24 (i=-2); 3º --> -24 * -1 = 24 (i=-1, break)
+    	fin repetir
+    fin si
+    ###
+    print("El factorial de su número es" +numero)
 
 Fin Algoritmo
 ```
@@ -1002,59 +737,31 @@ Salida
 ```
 Algoritmo primo
 
-###
-
-print("Introduzca un número entero")
-
-val <- false
-
-mientras que val distinta de true, repetir
-
-​	numero <- (Leer)
-
-​	si numero = numero entero, entonces
-
-​		val <- true
-
-​	sino, entonces
-
-​		print("Solo se admiten números enteros")
-
-​	fin si
-
-fin hasta
-
-###
-
-i <- 0 
-
-resultado <- primo
-
-si numero igual o menor que -1, entonces
-
-​	numero <- numero * (-1)
-
-fin si
-
-para i = numero -1 , hasta 2, repetir
-
-​	si numero mod i = 0; entonces
-
-​		resultado <- no primo		
-
-​		i = 2 #break		
-
-​	si no, entonces			
-
-​		i <- i-1
-
-​	fin si
-
-fin repetir
-
-###
-
-print("El número que ha introducido es " +resultado)
+    ###
+    print("Introduzca un número entero")
+    val <- false
+    mientras que val distinta de true, repetir
+    	numero <- (Leer)
+    	si numero = numero entero, entonces
+    		val <- true
+    	sino, entonces
+    		print("Solo se admiten números enteros")
+    	fin si
+    fin mientras
+    ###
+    i <- 0 
+    resultado <- primo
+    si numero igual o menor que -1, entonces
+    	numero <- numero * (-1)
+    fin si
+    para i = numero -1 , hasta 2, repetir
+    	si numero mod i = 0; entonces
+    		resultado <- no primo		
+    		i = 2 #break	
+    	fin si
+    fin repetir
+    ###
+    print("El número que ha introducido es " +resultado)
 
 Fin Algoritmo
 ```
@@ -1104,51 +811,33 @@ Crear arrays:
 
 ***Paso 3*** Pseudocódigo. 
 
-```var lado```
+```
+Algoritmo volumen cubo
 
-```var unidadEntrada =[m,dm,cm,mm] ``` 
-
-```var valorUnidadSalida = [0,1,2,3]``` 
-
-```var unidadSalida = [m3, dm3, cm3, mm3, L]``` 
-
-```var valorUnidadSalida = [0,1,2,3,4]``` 
-
-```var volumen```
-
-Algoritmo
-
-**Entrada**
-
-```Print ("Por favor introduzca el lado de su cubo")``` 
-
-```lado <- Leer (Teclado)``` 
-
-```unidadEntrada <- Leer (desplegable)```
-
-```unidadSalida <- Leer (desplegable)```
-
-**Proceso**
-
-```valorUnidadEntrada <- Leer(Tabla)```
-
-```valorUnidadSalida <- Leer(tabla)```
-
-`if valorUnidadSalida = 4; valorUnidadSalida = 1 `
-
-`fin if`
-
-`volumen = lado^3`
-
-`if valorUnidadEntrada = valorUnidadSalida; print("El volumen de su cubo es <Volumen><unidadSalida>")`
-
-`ifnot volumen = volumen * 1000^(valorUnidadSalida - valorUnidadEntrada)` 
-
-`endif`
-
-**Salida**
-
-`print("El volumen de su cubo es" +volumen +unidadSalida)`
+    unidadEntrada <-[m,dm,cm,mm]
+    valorUnidadSalida <- [0,1,2,3]
+    unidadSalida <- [m3, dm3, cm3, mm3, L]
+    valorUnidadSalida = [0,1,2,3,4]
+    ###
+    Print ("Por favor introduzca el lado de su cubo")
+    	lado <- Leer (Teclado)
+    	unidadEntrada <- Leer (desplegable)
+    	unidadSalida <- Leer (desplegable)
+    ###
+    valorUnidadEntrada <- Leer(Tabla)
+    valorUnidadSalida <- Leer(tabla)
+    si valorUnidadSalida = 4, entonces 
+    	valorUnidadSalida <- 1 
+    fin si
+    volumen = lado^3
+    si valorUnidadEntrada = valorUnidadSalida, entonces 
+    	print("El volumen de su cubo es <Volumen><unidadSalida>")
+    sino, entonces 
+    	volumen = volumen * 1000^(valorUnidadSalida - valorUnidadEntrada)
+    finsi
+    ###
+    print("El volumen de su cubo es" +volumen +unidadSalida)
+```
 
 ###	14. Dada una lista de números enteros, crea un algoritmo que calcule la suma de todos los números pares de la lista.
 
@@ -1176,55 +865,32 @@ Dar el resultado
 ```
 Algoritmo suma pares
 
-###
-
-print ("Introduzca una serie de números enteros separados por comas")
-
-val <- false
-
-mientras que val diferente de true, repetir
-
-listaNum <- Leer(Teclado)
-
-​	si listaNum solo está conformada por números enteros, entonces
-
-​		val <- true
-
-​	si no, entonces
-
-​		print("Solo se admiten números enteros")
-
-​	fin si
-
-fin mientras
-
-###
-
-i <- 0
-
-para i=0 hasta i = longitud(listaNum), repetir
-
-​	si listaNum(i) mod 2 es diferente a 0, entonces
-
-​		listaNum(i) <- 0
-
-​	i <- i+1
-
-fin repetir
-
-j <- 0
-
-resultado <- 0
-
-para j = 0 hasta j = longitud(listaNum), repetir
-
-​	resultado <- resultado + listaNum(j)
-
-fin repetir
-
-###
-
-print("La suma de los números pares introducidos en la lista es" +resultado)
+    ###
+    print ("Introduzca una serie de números enteros separados por comas")
+    val <- false
+    mientras que val diferente de true, repetir
+    	listaNum <- Leer(Teclado)
+    	si listaNum solo está conformada por números enteros, entonces
+    		val <- true
+    	si no, entonces
+    		print("Solo se admiten números enteros")
+    	fin si
+    fin mientras
+    ###
+    i <- 0
+    para i=0 hasta i = longitud(listaNum), repetir con paso 1
+    si listaNum(i) mod 2 es diferente a 0, entonces
+    	listaNum(i) <- 0
+    finsi
+    fin repetir
+    
+    j <- 0
+    resultado <- 0
+    para j = 0 hasta j = longitud(listaNum), repetir con paso 1
+    	resultado <- resultado + listaNum(j)
+    fin repetir
+    ###
+    print("La suma de los números pares introducidos en la lista es" +resultado)
 
 Fin algoritmo
 ```
@@ -1256,45 +922,28 @@ Salida
 ```
 Algoritmo positivo negativo 0
 
-###
+    ###
+    print("Introduzca un número.")
+    val <- false
+    mientras val diferente de true, repetir
+        num <- (Leer)
+        si num es un número, entonces
+            val <- true
+        si no, entonces
+            print("El valor introducido no es un número")
+        fin si
+    fin mientras
+    ### 
+    resultado <- 0
+    si num es igual o mayor que 1, entonces
+        resultado <- positivo
+    si num es igual o menor que -1, entonces
+        resultado <- negativo
+    fin si
+    ###
+    print("El número introducido es" +resultado)
 
-print("Introduzca un número.")
-
-val <- false
-
-mientras val diferente de true, repetir
-
-​	num <- (Leer)
-
-​	si num es un número, entonces
-
-​		val <- true
-
-​	si no, entonces
-
-​		print("El valor introducido no es un número")
-
-​	fin si
-
-fin mientras
-
-### 
-
-resultado <- 0
-
-si num es igual o mayor que 1, entonces
-
-​	resultado <- positivo
-
-si num es igual o menor que -1, entonces
-
-​	resultado <- negativo
-
-fin si
-
-###
-
-print("El número introducido es" +resultado)
+Fin Algoritmo
 ```
 
 
@@ -1325,47 +974,26 @@ Dar el resultado
 ```
 Algoritmo media
 
-###
-
-print ("Introduzca una serie de números enteros separados por comas")
-
-val <- false
-
-mientras que val diferente de true, repetir
-
-listaNum <- Leer(Teclado)
-
-​	si listaNum solo está conformada por números enteros, entonces
-
-​		val <- true
-
-​	si no, entonces
-
-​		print("Solo se admiten números enteros")
-
-​	fin si
-
-fin mientras
-
-###
-
-i <- 0
-
-total <-0
-
-para i = 0 hasta i=longitud(listaNum), repetir
-
-​	total <- total + listaNum(i)
-
-​	i <- i+1
-
-fin repetir
-
-media <- total / longitud(listaNum)
-
-###
-
-print("La media de los elementos introducidos es" +media)
+    ###
+    print ("Introduzca una serie de números enteros separados por comas")
+    val <- false
+    mientras que val diferente de true, repetir
+    	listaNum <- Leer(Teclado)
+    	si listaNum solo está conformada por números enteros, entonces
+    		val <- true
+    	si no, entonces
+    		print("Solo se admiten números enteros")
+    	fin si
+    fin mientras
+    ###
+    i <- 0
+    total <-0
+    para i = 0 hasta i=longitud(listaNum), repetir con paso 1
+    	total <- total + listaNum(i)
+    fin repetir
+    media <- total / longitud(listaNum)
+    ###
+    print("La media de los elementos introducidos es" +media)
 
 Fin Algoritmo
 ```
@@ -1401,33 +1029,20 @@ Como dije antes, entrada, proceso y salida se junta todo en la misma parte del a
 ```
 Algoritmo adivinanzas
 
-premio <- ranint(1,100) //Como esto no se ha visto en clase lo he buscado en Python porque se dijo que es un lenguaje simple
-
-val <- false
-
-mientras que val es distinta de true, repetir
-
-​	guess <- Leer(Teclado)
-
-​	si guess = premio, entonces
-
-​		print("¡PREMIO!")
-
-​		play("musicavictoria.mp3")
-
-​		val <- true
-
-​	si guess es mayor que premio, entonces
-
-​		print("Casi casi, prueba a tirar un poquito más bajo")
-
-​	si guess es menor que premio, entonces
-
-​		print("Casi casi, un poquito más alto")
-
-​	finsi
-
-fin mientras
+    premio <- ranint(1,100) //Como esto no se ha visto en clase lo he buscado en Python porque se dijo que es un lenguaje simple
+    val <- false
+    mientras que val es distinta de true, repetir
+        guess <- Leer(Teclado)
+        si guess = premio, entonces
+            print("¡PREMIO!")
+            play("musicavictoria.mp3")
+            val <- true
+        si guess es mayor que premio, entonces
+            print("Casi casi, prueba a tirar un poquito más bajo")
+        si guess es menor que premio, entonces
+            print("Casi casi, un poquito más alto")
+        finsi
+    fin mientras
 
 Fin Algoritmo
 ```
@@ -1463,131 +1078,70 @@ Devolver el resultado.
 ```
 Algoritmo anagrama
 
-###
+    ###
+    print("Introduzca una primera cadena de texto sin números o caracteres especiales")
+    val 1<- false
+    mientras que val 1 diferente de true, repetir
+        texto1 <- Leer(Teclado)
+        si texto1 es texto sin números o caracteres especiales, entonces
+            val1 <- true
+        si no, entonces
+            print("No se admiten números ni caracteres especiales")
+        finsi
+    fin mientras
+    print("Introduzca una segunda cadena de texto sin números o caracteres especiales")
+    val 2<- false
+    mientras que val 2 diferente de true, repetir
+        texto2 <- Leer(Teclado)
+        si texto2 es texto sin números o caracteres especiales, entonces
+            val2 <- true
+        si no, entonces
+            print("No se admiten números ni caracteres especiales")
+        finsi
+    fin mientras
+    ###
+    cadena1 <- subalgCadena(texto1)
+    cadena2 <- sugalgCadena(texto2)
 
-print("Introduzca una primera cadena de texto sin números o caracteres especiales")
+    #SubalgoritmoDepuración
 
-val 1<- false
+        para i = 0 hasta i=longitud(cadena1), repetir con paso 1
+        	si cadena1(i) = "", entonces
+       	 		eliminar(cadena1(i))
+        	fin si
+        fin para
+        para j = 0 hasta j=longitud(cadena2)
+        	si cadena2(j) = "", entonces
+        		eliminar(cadena2(j))
+       	 	fin si
+        fin para
 
-mientras que val 1 diferente de true, repetir
+    #Fin subalgoritmo depuración
 
-​	texto1 <- Leer(Teclado)
-
-​	si texto1 es texto sin números o caracteres especiales, entonces
-
-​		val1 <- true
-
-​	si no, entonces
-
-​		print("No se admiten números ni caracteres especiales")
-
-​	finsi
-
-fin mientras
-
-print("Introduzca una segunda cadena de texto sin números o caracteres especiales")
-
-val 2<- false
-
-mientras que val 2 diferente de true, repetir
-
-​	texto2 <- Leer(Teclado)
-
-​	si texto2 es texto sin números o caracteres especiales, entonces
-
-​		val2 <- true
-
-​	si no, entonces
-
-​		print("No se admiten números ni caracteres especiales")
-
-​	finsi
-
-fin mientras
-
-###
-
-cadena1 <- subalgCadena(texto1)
-
-cadena2 <- sugalg(texto2)
-
-#SubalgoritmoDepuración
-
-para i = 0 hasta i=longitud(cadena1)
-
-​	si cadena1(i) = "", entonces
-
-​	eliminar(cadena1(i))
-
-​	fin si
-
-​	i <- i+1
-
-fin para
-
-para j = 0 hasta j=longitud(cadena2)
-
-​	si cadena2(j) = "", entonces
-
-​		eliminar(cadena2(j))
-
-​	fin si
-
-​	j <- j+1
-
-fin para
-
-#Fin subalgoritmo depuración
-
-si longitud(cadena1) diferente longitud(cadena2), entonces
-
-​	print("Los textos no son anagramas.")
-
-para k=0 hasta k=longitud(cadena1), repetir // (a,j,o,s) y (s,o,j,a,s)
-
-​	para l=0 hasta l=longitud(cadena2) 
-
-​		si cadena1(k) = cadena2(l), entonces // (a,j,o,s) y (s,o,j,"",) -->  (a,j,o,s) y (s,o,"","",) --> (a,j,o,s) y (s,"","","") --> (a,j,o,s) y ("","","","")
-
-​			cadena2(l) <- ""
-
-​			l <- longitud(cadena2)#break
-
-​		si no, entonces
-			l <- l+1
-		fin si
-
-​	fin para
-
-​	k <- k+1
-
-fin para
-
-contador <- 0
-
-para m = 0 a m=longitud(cadena2), repetir
-
-​	si cadena(2m) distinto de "", entonces
-
-​		contador <- contador +1
-
-​	finsi
-
-​	m <- m+1
-
-fin para
-
-###
-
-si contador = 0, entonces
-
-​	print("Los textos son anagramas")
-
-si no, entonces
-
-​	print("Los textos no son anagramas")
-
-fin si
+    si longitud(cadena1) diferente longitud(cadena2), entonces
+    	print("Los textos no son anagramas.")
+    finsi
+    
+    para k=0 hasta k=longitud(cadena1), repetir
+    	para l=0 hasta l=longitud(cadena2) 
+    		si cadena1(k) = cadena2(l), entonces  
+    			cadena2(l) <- ""
+    			l <- longitud(cadena2)#break
+    		fin si
+    	fin para
+    fin para
+    contador <- 0
+    para m = 0 a m=longitud(cadena2), repetir
+    	si cadena2(m) distinto de "", entonces
+    		contador <- contador +1
+    	finsi
+    fin para
+    ###
+    si contador = 0, entonces
+    	print("Los textos son anagramas")
+    si no, entonces
+    	print("Los textos no son anagramas")
+    fin si
 
 Fin Algoritmo
 ```
@@ -1620,70 +1174,37 @@ Salida
 
 ```
 Algoritmo eliminación repetidos
-
-###
-
-print ("Introduzca una serie de números enteros separados por comas")
-
-val <- false
-
-mientras que val diferente de true, repetir
-
-listaNum <- Leer(Teclado)
-
-​	si listaNum solo está conformada por números enteros, entonces
-
-​		val <- true
-
-​	si no, entonces
-
-​		print("Solo se admiten números enteros")
-
-​	fin si
-
-fin mientras
-
-###
-
-i  <- 0
-
-j <- 0
-
-para i=0 hasta i=longitud(listaNum), repetir
-
-​	para j=i hasta j=longitud(listaNum), repetir
-
-​		si listaNum(i) = listaNum(j+1) , entonces
-
-​			listaNum(i) <- ""
-			j <- longitud(listaNum) #break
-
-​		fin si
-
-​		j <- j+1
-
-​	fin para
-
-i <- i+1
-
-fin para
-
-k  <- 0
-
-para k=0 hasta k = longitud(listaNum), repetir
-
-​	si listaNum(k) = "", entonces,
-
-​		eliminar(listaNum(k))
-
-​	finsi
-
-finpara
-
-###
-
-print("Su lista sin números repetidos sería")
-print(+listaNum)
+    ###
+    print ("Introduzca una serie de números enteros separados por comas")
+    val <- false
+    mientras que val diferente de true, repetir
+        listaNum <- Leer(Teclado)
+        si listaNum solo está conformada por números enteros, entonces
+            val <- true
+        si no, entonces
+            print("Solo se admiten números enteros")
+        fin si
+    fin mientras
+    ###
+    i  <- 0
+    j <- 0
+    para i=0 hasta i=longitud(listaNum), repetir con paso 1
+        para j=i hasta j=longitud(listaNum), repetir con paso 1
+            si listaNum(i) = listaNum(j+1) , entonces
+                listaNum(i) <- ""
+                j <- longitud(listaNum) #break
+            fin si
+        fin para
+    fin para
+    k  <- 0
+    para k=0 hasta k = longitud(listaNum), repetir con paso 1
+        si listaNum(k) = "", entonces,
+            eliminar(listaNum(k))
+        finsi
+    finpara
+    ###
+    print("Su lista sin números repetidos sería")
+    print(+listaNum)
 
 Fin Algoritmo
 ```
@@ -1715,56 +1236,30 @@ Salida
 ```
 Algoritmo capicua
 
-###
-
-print("Introduzca su numero.")
-
-val<-false
-
-hasta val = true, repetir
-
-​	numero <- Leer(Teclado)
-
-​	si numero = numero, entonces
-​		val <- true
-
-​	si no, entonces
-
-​		print ("Solo se admiten numeros")
-
-​	finsi
-
-fin hasta
-
-###
-
-arrayNum <- convertirArray(num)
-
-n=longitud(arrayNum)
-
-resultado <- "es capicúa"
-
-i<-0
-
-para i=0, repetir hasta i=n
-
-​	si arrayNum (i) es diferente de arrayTexto(n-i), entonces
-
-​		resultado<- "no es capicúa"
-
-​		i <- n #break
-
-​	si no, entonces
-
-​		i <- i+1
-
-​	finsi
-
-fin para
-
-###
-
-print("El número" +num +resultado)
+    ###
+    print("Introduzca su numero.")
+    val<-false
+    mientras diferente true, repetir
+    	numero <- Leer(Teclado)
+    	si numero = numero, entonces
+    		val <- true
+    	si no, entonces
+    		print ("Solo se admiten numeros")
+    finsi
+    finmientras
+    ###
+    arrayNum <- convertirArray(num)
+    n=longitud(arrayNum)
+    resultado <- "es capicúa"
+    i<-0
+    para i=0, repetir hasta i=n, repetir con paso 1
+    	si arrayNum (i) es diferente de arrayTexto(n-i), entonces
+    		resultado<- "no es capicúa"
+    		i <- n #break
+    	finsi
+    fin para
+    ###
+    print("El número" +num +resultado)
 
 Fin algoritmo
 
