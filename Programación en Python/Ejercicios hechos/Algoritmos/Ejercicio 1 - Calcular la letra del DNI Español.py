@@ -14,7 +14,7 @@ while valMain != "SALIR": #Para poder usar el programa en varias ocasiones
             if len(nif) == 8:
                 val1 = True
             else:
-                print(f"Se ha producido un error {error}, de 8 dígitos.")
+                print(f"Introduzca un número de 8 dígitos.")
         except Exception as error:
             print(f" Se ha producido un error {error} Debe introducir un número entero.")
 

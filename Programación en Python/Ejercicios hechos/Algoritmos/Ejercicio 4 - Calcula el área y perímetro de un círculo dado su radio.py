@@ -1,7 +1,7 @@
 #Ejercicio 4: Calcula el área y perímetro de un círculo dado su radio
 print("Bienvenido a la calculadora de perímetro y radio de un círculo, para continuar, siga las instrucciones.")
 valMain = ""
-while valMain != "SALIR":
+while valMain != "SALIR": #Para poder usar el programa en varias ocasiones
     #Entrada
     print("Por favor, intruzca el radio de su círculo.")
     val = ""
