@@ -2,4 +2,4 @@
 
 ##	Ejercicios para Curso Formativo EOI
 
-última versión 1.4.2023
+última versión 2.4.2023
