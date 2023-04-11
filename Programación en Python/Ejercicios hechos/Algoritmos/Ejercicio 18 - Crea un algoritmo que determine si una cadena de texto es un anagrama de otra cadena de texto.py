@@ -10,14 +10,13 @@ while valMain != "SALIR":
     print("Introduzca el primer texto.")
     while True:
         texto1 = input()
-        textoLista1 = list(texto1)
         contador = 0
-        for i in range (0, len(textoLista1)):
-            if any(textoLista1[i] == specialChar[j] for j in range(0,len(specialChar))) == True:
+        for i in texto1:
+            if any(i == j for j in specialChar) == True:
                 print("No se admiten caracteres especiales")
                 contador = 1
                 break
-            if textoLista1[i].isnumeric() == True:
+            if i.isnumeric() == True:
                 print("No se admiten números.")
                 contador = 1
                 break
@@ -27,14 +26,13 @@ while valMain != "SALIR":
     print("Introduzca el segundo texto.")
     while True:
         texto2 = input()
-        textoLista2 = list(texto2)
         contador = 0
-        for i in range (0, len(textoLista2)):
-            if any(textoLista2[i] == specialChar[j] for j in range(0,len(specialChar))) == True:
+        for i in texto2:
+            if any(i == j for j in specialChar) == True:
                 print("No se admiten caracteres especiales")
                 contador = 1
                 break
-            if textoLista2[i].isnumeric() == True:
+            if i.isnumeric() == True:
                 print("No se admiten números.")
                 contador = 1
                 break
@@ -43,40 +41,26 @@ while valMain != "SALIR":
 
     #Proceso
 
-        #Subalgoritmo para remover espacios en blanco
-    while True:
-            try:
-                textoLista1.remove(" ")
-            except:
-                break
-
-    while True:
-            try:
-                textoLista2.remove(" ")
-            except:
-                break
-
         #Subalgoritmo para pasarlo todo a minusculas. Para poder aplicar lower debe ser de tipo str por lo que hay que hacer join y pasarlo a lista de nuevo.
-    textoDep1 = "".join(textoLista1)
-    textoDep1 = textoDep1.lower()
-    textoDep1 = list(textoDep1)
-
-    textoDep2 = "".join(textoLista2)
-    textoDep2 = textoDep2.lower()
-    textoDep2 = list(textoDep2)
+    textoDep1 = texto1.lower().replace(" ", "")
+    textoDep2 = texto2.lower().replace(" ", "")
 
         #Comparamos letra por letra entre las dos cadenas. Si encuentra igualdades, el elemento duplicado pasa a ser "". 
         #Luego se revisa si algún elemento es diferente de "". 
         #Para ello debe de haber máxima igualdad. 
-    for i in range (0, len(textoLista1)):
-        for j in range (0, len(textoLista2)):
-            if textoDep1[i] == textoDep2[j]:
-                textoDep2[j] = ""
+    
+    resultados = list(textoDep2) #Necesario que sea lista para poder reemplazar
+    for i in range (0,len(textoDep1)):
+        for j in range (0,len(resultados)):
+            if textoDep1[i] == resultados[j]:
+                resultados[j] = ""
                 break
+
     contador = 0
-    for i in range (0, len(textoDep2)):
-        if textoDep2[i] != "":
-            contador = contador+1
+    if len(textoDep1) != len(textoDep2):
+        contador = 1
+    elif any(char != "" for char in resultados) == True:
+        contador = 1
 
     #Salida
     if contador == 0:

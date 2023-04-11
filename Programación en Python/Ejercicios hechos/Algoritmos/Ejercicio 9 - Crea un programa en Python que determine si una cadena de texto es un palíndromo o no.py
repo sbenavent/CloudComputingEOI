@@ -5,8 +5,7 @@ valMain = ""
 while valMain != "SALIR": #Este bucle evita que se cierre el programa sin permiso del usuario.
     
     #Entrada
-    val = ""
-    while val != True: #Este bucle actúa para comprobar si el texto tiene caracteres especiales. Permite ingresar números, por lo que 1ojo1 es un palíndromo pero 1ojo no. 
+    while True: #Este bucle actúa para comprobar si el texto tiene caracteres especiales. Permite ingresar números, por lo que 1ojo1 es un palíndromo pero 1ojo no. 
         print("Introduzca su texto.")
         texto = input()
         contador = 0
@@ -16,25 +15,13 @@ while valMain != "SALIR": #Este bucle evita que se cierre el programa sin permis
                     print("No se admiten caracteres especiales")
                     contador = 1
         if contador != 1:
-            val = True
+            break
 
     #Proceso
-    textoLista = list(texto) #En primer lugar quitamos los espacios con la función remove(x), que quita el primer elemento que coincide con x, pasado en bucle.
-    while True:
-        try:
-            textoLista.remove(" ")
-        except:
-            break
-    textoDep = "".join(textoLista) #Transformamos el texto en str.
-    textoDep = textoDep.lower() #Aplicamos la fucnión lower para que todo sea minúsculas
-    valores = []
-    for character in textoDep: #Pasamos el texto a número aplicándole un valor siguiendo código ascii y añadimos los valores a una lista.
-        numero = ord(character) - 96
-        valores.append(int(numero))
-
+    textoDep = texto.replace(" ", "").lower()
     contador = 0  #Reusamos contador para no generar más variables
-    for k in range(len(valores)-1): #Comparamos el valor con el simétrico y asignamos contador a 1 si en alguno de los puntos son diferentes
-        if valores[k] != valores[len(valores)-k-1]:
+    for k in range (0, len(textoDep)):
+        if textoDep[k] != textoDep[len(textoDep)-1-k]:
             contador = 1
             break
   

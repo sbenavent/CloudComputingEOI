@@ -6,7 +6,6 @@ __pycache__/
 
 # Archivos compilados y binarios
 *.pyc
-*.exe
 *.dll
 *.so
 *.out
